@@ -20,6 +20,36 @@ footer{border-top:1px solid #ffffff0d;padding:24px 0 30px;color:#73717b;font-siz
 @media(max-width:800px){.hero-grid{grid-template-columns:1fr;gap:15px;padding:76px 0 55px}.hero{min-height:auto}.hero-copy{max-width:590px}.art{height:300px;margin-top:0}.art-frame{width:285px}.core{width:110px;height:110px}.core span{font-size:56px}.hero:after{right:-280px}.section-top,.command-layout{grid-template-columns:1fr;gap:17px}.section-top{margin-bottom:27px}.command-layout{gap:27px}.features{grid-template-columns:repeat(2,1fr)}.about-panel{grid-template-columns:1fr;align-items:start}.about .button{justify-self:start}.strip-items{gap:13px}}
 @media(max-width:480px){.container{width:calc(100% - 32px)}header{height:66px}.identity{font-size:11px;gap:8px}.identity small{display:none}.symbol{width:31px;height:31px}.navlinks{gap:13px}.navlinks a{font-size:10px}.nav-action{display:none}.hero-grid{padding:66px 0 40px}.hero h1{font-size:54px;margin:22px 0 19px}.hero-copy{font-size:13px}.art{height:260px}.art-frame{width:245px}.core{width:95px;height:95px}.core span{font-size:48px}.strip-inner{align-items:flex-start;flex-direction:column;gap:10px}.strip-items{gap:12px;font-size:10px}.strip-items span:before{margin-right:5px}.content{padding:65px 0!important}.features{grid-template-columns:1fr}.feature{min-height:155px;padding:20px}.feature h3{margin-top:22px}.command{grid-template-columns:112px 1fr;gap:10px}.command code,.command span{font-size:11px}.about{padding:60px 0}.about-panel{padding:25px 20px}.about h2{font-size:37px}.footer-row{flex-direction:column}.footer-links{gap:14px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+/* Refined motion system */
+@keyframes fade-up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes orbit-drift{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes orbit-drift-reverse{from{transform:rotate(360deg) scaleY(.42)}to{transform:rotate(0deg) scaleY(.42)}}
+@keyframes core-breathe{0%,100%{box-shadow:0 20px 70px #0008,inset 0 1px #ffffff20}50%{box-shadow:0 20px 85px #8f79b51c,inset 0 1px #ffffff28}}
+@keyframes sheen{0%{transform:translateX(-150%) skewX(-18deg)}55%,100%{transform:translateX(250%) skewX(-18deg)}}
+@keyframes pulse-dot{0%,100%{opacity:.45;box-shadow:0 0 0 0 #b9a4e800}50%{opacity:1;box-shadow:0 0 0 5px #b9a4e817}}
+.hero-grid>*{animation:fade-up .8s both;animation-timing-function:cubic-bezier(.2,.7,.2,1)}
+.hero-grid>.art{animation-delay:.12s}
+.art-frame:before{animation:orbit-drift 44s linear infinite}
+.art-frame:after{animation:orbit-drift-reverse 58s linear infinite}
+.orbit{animation:orbit-drift 32s linear infinite}
+.orbit.two{animation:orbit-drift-reverse 38s linear infinite}
+.core{animation:core-breathe 5s ease-in-out infinite}
+.symbol{transition:transform .35s ease,border-color .35s ease}
+.identity:hover .symbol{transform:rotate(45deg);border-color:#b9a4e8}
+.navlinks a,.footer-links a{transition:color .2s ease}
+.button{position:relative;overflow:hidden}
+.button:after{content:"";position:absolute;top:-50%;left:0;width:35%;height:200%;background:linear-gradient(90deg,transparent,#ffffff35,transparent);transform:translateX(-150%) skewX(-18deg)}
+.button:hover:after{animation:sheen .8s ease}
+.feature{transition:background .25s ease,border-color .25s ease,transform .25s ease}
+.feature:hover{transform:translateY(-4px);border-color:#625873}
+.command{transition:padding .2s ease,background .2s ease}
+.command:hover{padding-left:10px;background:#ffffff04}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.eyebrow:before{animation:pulse-dot 3s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+
 </style>
 </head>
 <body>
@@ -64,6 +94,14 @@ footer{border-top:1px solid #ffffff0d;padding:24px 0 30px;color:#73717b;font-siz
 <section class="about" id="about"><div class="container"><div class="about-panel"><div><div class="overline">03 / Oryn Development</div><h2>A cleaner way to run your server.</h2><p>Oryn is being built as a multipurpose Discord bot with a focus on useful functionality, considered design, and a consistent experience for server teams.</p></div><a class="button primary" id="get-started" href="https://github.com/XxDEMONxX-lab/oryn-bot" target="_blank" rel="noopener noreferrer">View the project <span class="arrow">↗</span></a></div></div></section>
 </main>
 <footer><div class="container footer-row"><span><span class="footer-brand">ORYN</span> &nbsp;·&nbsp; A project by Oryn Development</span><div class="footer-links"><a href="#home">Back to top ↑</a><a href="https://github.com/XxDEMONxX-lab/oryn-bot" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><span>© <span id="year">2026</span> Oryn Development</span></div></footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const motionTargets=document.querySelectorAll('section.content,.strip,.about-panel,.feature,.command,.section-top,.command-layout');
+motionTargets.forEach(el=>el.classList.add('reveal'));
+if('IntersectionObserver' in window){
+ const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}})},{threshold:.12,rootMargin:'0px 0px -35px 0px'});
+ motionTargets.forEach(el=>observer.observe(el));
+}else{motionTargets.forEach(el=>el.classList.add('is-visible'))}
+</script>
 </body>
 </html>
