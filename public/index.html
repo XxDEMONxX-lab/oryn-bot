@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0a0c">
+<meta name="description" content="Oryn Bot by Oryn Development. A multipurpose Discord bot for server management, moderation, security, support, and everyday tools.">
+<title>Oryn Bot — Oryn Development</title>
+<style>
+:root{color-scheme:dark;--bg:#0a0a0c;--surface:#101114;--surface2:#141519;--line:#28292f;--ink:#f1f0f3;--muted:#9999a3;--soft:#c6c2cf;--silver:#d9d6df;--violet:#b9a4e8;--width:1160px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:82px}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.7 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.005em}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid var(--violet);outline-offset:4px}.container{width:min(var(--width),calc(100% - 48px));margin:auto}
+header{height:76px;border-bottom:1px solid #ffffff0d;background:#0a0a0ce8;backdrop-filter:blur(16px);position:sticky;top:0;z-index:10}.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}.identity{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:760;letter-spacing:.16em}.symbol{width:34px;height:34px;border:1px solid #65616c;display:grid;place-items:center;position:relative;background:linear-gradient(145deg,#242329,#111114);color:#e6e2eb;font-size:17px;clip-path:polygon(14% 0,86% 0,100% 14%,100% 86%,86% 100%,14% 100%,0 86%,0 14%)}.identity small{font-size:10px;letter-spacing:.13em;color:#85818d;font-weight:600;margin-left:3px}.navlinks{display:flex;align-items:center;gap:29px;color:#a4a2ab;font-size:12px}.navlinks a:hover{color:#fff}.nav-action{font-size:12px;border:1px solid #45414c;padding:9px 14px;transition:border-color .2s,color .2s}.nav-action:hover{border-color:#b6a6d7;color:white}
+.hero{min-height:610px;display:grid;align-items:center;position:relative;border-bottom:1px solid #ffffff0b;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff06 1px,transparent 1px),linear-gradient(90deg,#ffffff06 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,transparent,#000 24%,#000 70%,transparent);pointer-events:none}.hero:after{content:"";position:absolute;width:540px;height:540px;right:-110px;top:25px;border:1px solid #ffffff09;border-radius:50%;box-shadow:0 0 0 55px #ffffff03,0 0 0 110px #ffffff02;pointer-events:none}.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:34px;padding:76px 0 82px;position:relative;z-index:1}.eyebrow{display:flex;align-items:center;gap:11px;color:#aaa4b7;font-size:10px;text-transform:uppercase;letter-spacing:.19em}.eyebrow:before{content:"";width:25px;height:1px;background:#b9a4e8}.hero h1{font-size:clamp(54px,7vw,88px);line-height:.98;letter-spacing:-.075em;font-weight:680;margin:26px 0 24px;max-width:650px}.hero h1 span{color:#a6a1ae}.hero-copy{max-width:520px;color:var(--muted);font-size:15px;line-height:1.85}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}.button{display:inline-flex;align-items:center;justify-content:center;gap:13px;padding:12px 17px;border:1px solid #39373f;font-size:12px;font-weight:650;transition:background .2s,border-color .2s,transform .2s}.button:hover{transform:translateY(-2px);border-color:#8e7cae}.button.primary{background:#e5e1e9;border-color:#e5e1e9;color:#111014}.button.primary:hover{background:white}.button .arrow{font-size:15px}.hero-foot{margin-top:26px;color:#696973;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.art{height:390px;position:relative;display:grid;place-items:center}.art-frame{width:min(100%,370px);aspect-ratio:1;position:relative;display:grid;place-items:center}.art-frame:before,.art-frame:after{content:"";position:absolute;inset:7%;border:1px solid #b6adca20;transform:rotate(45deg)}.art-frame:after{inset:18%;border-color:#b6adca30;transform:rotate(22.5deg)}.orbit{position:absolute;width:84%;height:84%;border:1px solid #ffffff16;border-radius:50%;transform:rotate(-28deg) scaleY(.42)}.orbit.two{width:96%;height:96%;transform:rotate(54deg) scaleY(.42);border-color:#b9a4e83a}.core{width:142px;height:142px;border:1px solid #8d8798;background:linear-gradient(145deg,#29272f 0%,#111114 65%);display:grid;place-items:center;transform:rotate(45deg);box-shadow:0 20px 70px #0008,inset 0 1px #ffffff20;position:relative}.core:before{content:"";position:absolute;inset:12px;border:1px solid #ffffff16}.core span{transform:rotate(-45deg);font-size:70px;letter-spacing:-.1em;font-weight:650;color:#dedbe4;text-shadow:0 1px #fff4}.art-caption{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);white-space:nowrap;color:#77747f;font-size:9px;letter-spacing:.2em;text-transform:uppercase}
+.strip{border-bottom:1px solid #ffffff0c}.strip-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:21px 0;flex-wrap:wrap}.strip-label{color:#74727c;font-size:10px;letter-spacing:.15em;text-transform:uppercase}.strip-items{display:flex;gap:26px;flex-wrap:wrap;color:#b7b3bf;font-size:11px}.strip-items span:before{content:"/";color:#74658f;margin-right:9px}
+section.content{padding:95px 0}.section-top{display:grid;grid-template-columns:.8fr 1.2fr;gap:55px;align-items:end;margin-bottom:34px}.overline{font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:#b5a2d7}.section-top h2,.about h2{font-size:clamp(34px,4.5vw,52px);line-height:1.08;letter-spacing:-.06em;font-weight:640;margin:13px 0 0}.section-top p{color:var(--muted);max-width:500px;margin:0 0 3px;font-size:13px}.features{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.feature{min-height:205px;padding:24px 23px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(135deg,#101114,#0c0c0e);transition:background .2s}.feature:hover{background:#151419}.feature-head{display:flex;justify-content:space-between;align-items:center;color:#aaa4b8;font-size:11px}.feature-number{font-size:10px;color:#5e5b65;letter-spacing:.1em}.feature h3{font-size:16px;font-weight:620;letter-spacing:-.02em;margin:31px 0 6px}.feature p{font-size:12px;line-height:1.8;color:#92919b;margin:0;max-width:290px}
+.command-section{background:#0d0d10;border-top:1px solid #ffffff09;border-bottom:1px solid #ffffff09}.command-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}.command-layout h2{font-size:clamp(34px,4.5vw,50px);line-height:1.08;letter-spacing:-.06em;margin:13px 0}.command-layout .intro{color:var(--muted);font-size:13px;max-width:350px}.command-list{border-top:1px solid var(--line)}.command{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center;padding:15px 2px;border-bottom:1px solid var(--line)}.command code{font:12px ui-monospace,SFMono-Regular,Consolas,monospace;color:#c8b9e7}.command span{font-size:12px;color:#9998a1}.note{font-size:10px;color:#777580;margin-top:15px;line-height:1.7}
+.about{padding:86px 0}.about-panel{border:1px solid #38343f;background:linear-gradient(112deg,#19161f,#101013 65%);padding:clamp(27px,5vw,54px);display:grid;grid-template-columns:1fr auto;gap:35px;align-items:end;position:relative;overflow:hidden}.about-panel:after{content:"O";position:absolute;right:14%;top:-100px;font-size:300px;line-height:1;color:#ffffff04;font-weight:700;pointer-events:none}.about h2{max-width:550px}.about p{max-width:560px;color:var(--muted);font-size:13px;margin:15px 0 0}.about .button{position:relative;z-index:1;white-space:nowrap}
+footer{border-top:1px solid #ffffff0d;padding:24px 0 30px;color:#73717b;font-size:10px}.footer-row{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.footer-brand{color:#d2ced9;letter-spacing:.15em;font-weight:700}.footer-links{display:flex;gap:18px}.footer-links a:hover{color:#eee}
+@media(max-width:800px){.hero-grid{grid-template-columns:1fr;gap:15px;padding:76px 0 55px}.hero{min-height:auto}.hero-copy{max-width:590px}.art{height:300px;margin-top:0}.art-frame{width:285px}.core{width:110px;height:110px}.core span{font-size:56px}.hero:after{right:-280px}.section-top,.command-layout{grid-template-columns:1fr;gap:17px}.section-top{margin-bottom:27px}.command-layout{gap:27px}.features{grid-template-columns:repeat(2,1fr)}.about-panel{grid-template-columns:1fr;align-items:start}.about .button{justify-self:start}.strip-items{gap:13px}}
+@media(max-width:480px){.container{width:calc(100% - 32px)}header{height:66px}.identity{font-size:11px;gap:8px}.identity small{display:none}.symbol{width:31px;height:31px}.navlinks{gap:13px}.navlinks a{font-size:10px}.nav-action{display:none}.hero-grid{padding:66px 0 40px}.hero h1{font-size:54px;margin:22px 0 19px}.hero-copy{font-size:13px}.art{height:260px}.art-frame{width:245px}.core{width:95px;height:95px}.core span{font-size:48px}.strip-inner{align-items:flex-start;flex-direction:column;gap:10px}.strip-items{gap:12px;font-size:10px}.strip-items span:before{margin-right:5px}.content{padding:65px 0!important}.features{grid-template-columns:1fr}.feature{min-height:155px;padding:20px}.feature h3{margin-top:22px}.command{grid-template-columns:112px 1fr;gap:10px}.command code,.command span{font-size:11px}.about{padding:60px 0}.about-panel{padding:25px 20px}.about h2{font-size:37px}.footer-row{flex-direction:column}.footer-links{gap:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+/* Refined motion system */
+@keyframes fade-up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes orbit-drift{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes orbit-drift-reverse{from{transform:rotate(360deg) scaleY(.42)}to{transform:rotate(0deg) scaleY(.42)}}
+@keyframes core-breathe{0%,100%{box-shadow:0 20px 70px #0008,inset 0 1px #ffffff20}50%{box-shadow:0 20px 85px #8f79b51c,inset 0 1px #ffffff28}}
+@keyframes sheen{0%{transform:translateX(-150%) skewX(-18deg)}55%,100%{transform:translateX(250%) skewX(-18deg)}}
+@keyframes pulse-dot{0%,100%{opacity:.45;box-shadow:0 0 0 0 #b9a4e800}50%{opacity:1;box-shadow:0 0 0 5px #b9a4e817}}
+.hero-grid>*{animation:fade-up .8s both;animation-timing-function:cubic-bezier(.2,.7,.2,1)}
+.hero-grid>.art{animation-delay:.12s}
+.art-frame:before{animation:orbit-drift 44s linear infinite}
+.art-frame:after{animation:orbit-drift-reverse 58s linear infinite}
+.orbit{animation:orbit-drift 32s linear infinite}
+.orbit.two{animation:orbit-drift-reverse 38s linear infinite}
+.core{animation:core-breathe 5s ease-in-out infinite}
+.symbol{transition:transform .35s ease,border-color .35s ease}
+.identity:hover .symbol{transform:rotate(45deg);border-color:#b9a4e8}
+.navlinks a,.footer-links a{transition:color .2s ease}
+.button{position:relative;overflow:hidden}
+.button:after{content:"";position:absolute;top:-50%;left:0;width:35%;height:200%;background:linear-gradient(90deg,transparent,#ffffff35,transparent);transform:translateX(-150%) skewX(-18deg)}
+.button:hover:after{animation:sheen .8s ease}
+.feature{transition:background .25s ease,border-color .25s ease,transform .25s ease}
+.feature:hover{transform:translateY(-4px);border-color:#625873}
+.command{transition:padding .2s ease,background .2s ease}
+.command:hover{padding-left:10px;background:#ffffff04}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.eyebrow:before{animation:pulse-dot 3s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+
+/* Extra polish: scroll progress, interactive spotlight, motion and responsive preview */
+:root{--px:50%;--py:20%}
+body{background-image:radial-gradient(550px circle at var(--px) var(--py),#9b84d00b,transparent 68%)}
+.progress{position:fixed;z-index:60;top:0;left:0;width:100%;height:2px;pointer-events:none}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#82709f,#e0d9ed,#a58bcf);box-shadow:0 0 12px #b9a4e855}
+@keyframes halo-float{from{transform:translate(0,0) scale(1)}to{transform:translate(-20px,14px) scale(1.06)}}
+@keyframes float-panel{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes signal-pulse{0%,100%{opacity:.45}50%{opacity:1}}
+.hero:after{animation:halo-float 16s ease-in-out infinite alternate}
+.feature{position:relative;overflow:hidden}.feature:before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(transparent,#b9a4e8,transparent);opacity:0;transition:opacity .3s}.feature:hover:before{opacity:1}
+.command code{transition:color .2s}.command:hover code{color:#d8c9f4}
+.button{position:relative;overflow:hidden}.button:after{content:"";position:absolute;top:-50%;left:0;width:35%;height:200%;background:linear-gradient(90deg,transparent,#ffffff35,transparent);transform:translateX(-150%) skewX(-18deg)}.button:hover:after{animation:sheen .8s ease}
+.preview-section{padding:78px 0 90px;border-bottom:1px solid #ffffff0c;overflow:hidden}
+.preview-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:26px}.preview-heading h2{font-size:clamp(30px,4vw,44px);line-height:1.08;letter-spacing:-.06em;margin:12px 0 0}.preview-heading p{color:var(--muted);font-size:12px;max-width:330px;margin:0}
+.console{border:1px solid #34313b;background:#0c0c0f;box-shadow:0 30px 100px #0006;overflow:hidden}
+.console-top{height:44px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#111115}.dots{display:flex;gap:6px}.dots i{width:6px;height:6px;border-radius:50%;background:#777080}.console-label{font:10px ui-monospace,monospace;letter-spacing:.1em;color:#817d8a}
+.console-body{display:grid;grid-template-columns:175px 1fr;min-height:250px}.console-side{border-right:1px solid var(--line);padding:17px 12px;background:#0f0f12}.console-side small{display:block;font-size:9px;letter-spacing:.16em;color:#77727f;margin:0 0 12px 7px}
+.console-link{padding:8px 9px;color:#96919f;font-size:11px;margin:3px 0;border:1px solid transparent}.console-link.active{color:#e3dbea;border-color:#4c425b;background:#1a1720}.console-main{padding:21px;min-width:0}.console-title{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:15px}.console-title h3{font-size:16px;font-weight:560;margin:0}.badge{font-size:9px;letter-spacing:.1em;color:#b9a4e8;border:1px solid #5b4d70;padding:5px 8px}
+.console-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:17px}.console-card{border:1px solid #29272f;padding:13px;background:linear-gradient(145deg,#141318,#0e0e11);animation:float-panel 7s ease-in-out infinite}.console-card:nth-child(2){animation-delay:-2s}.console-card:nth-child(3){animation-delay:-4s}.console-card small{display:block;font-size:9px;color:#85808d;letter-spacing:.1em}.console-card strong{display:block;font-size:14px;font-weight:560;margin-top:8px}.console-card p{font-size:10px;color:#8e849f;margin:4px 0 0}
+.console-log{margin-top:13px;padding:11px 13px;border:1px solid #29272f;font:10px/1.9 ui-monospace,monospace;color:#8f8998}.console-log i{display:inline-block;width:5px;height:5px;background:#b9a4e8;border-radius:50%;margin-right:8px;animation:signal-pulse 2s infinite}.console-log em{font-style:normal;color:#c9bedc}.caption{margin:11px 0 0;color:#6f6b76;font-size:10px}
+.faq-section{padding:80px 0;border-bottom:1px solid #ffffff0b}.faq-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:55px}.faq-layout h2{font-size:clamp(32px,4.2vw,48px);line-height:1.08;letter-spacing:-.06em;margin:13px 0}.faq-intro{color:var(--muted);font-size:13px}.faq-list{border-top:1px solid var(--line)}.faq-item{border-bottom:1px solid var(--line)}.faq-item summary{cursor:pointer;list-style:none;padding:17px 28px 17px 0;position:relative;font-size:13px;color:#d6d2dc}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:after{content:"+";position:absolute;right:3px;top:15px;color:#b9a4e8;font-size:18px;transition:transform .25s}.faq-item[open] summary:after{transform:rotate(45deg)}.faq-item p{margin:0;padding:0 20px 17px 0;color:#96929e;font-size:12px;line-height:1.8}
+.back-top{position:fixed;right:18px;bottom:18px;width:38px;height:38px;display:grid;place-items:center;background:#17151c;border:1px solid #494052;color:#e2d9ef;z-index:25;opacity:0;transform:translateY(8px);pointer-events:none;transition:all .25s}.back-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+@media(max-width:760px){.preview-section,.faq-section{padding:58px 0}.preview-heading{display:block}.preview-heading p{margin-top:13px}.console-body{grid-template-columns:1fr}.console-side{display:flex;gap:4px;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px}.console-side small{display:none}.console-link{white-space:nowrap;margin:0;padding:7px}.console-main{padding:14px}.console-grid{gap:6px}.console-card{padding:9px}.console-card strong{font-size:12px}.faq-layout{grid-template-columns:1fr;gap:22px}}
+@media(max-width:420px){.console-grid{grid-template-columns:1fr}.console-card{display:flex;align-items:center;justify-content:space-between;gap:10px}.console-card strong{margin:0}.console-card p{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+</style>
+</head>
+<body><div class="progress"><span id="progress-fill"></span></div>
+<header><div class="container nav">
+<a class="identity" href="#home" aria-label="Oryn Bot home"><span class="symbol">O</span><span>ORYN <small>DEVELOPMENT</small></span></a>
+<nav class="navlinks" aria-label="Main navigation"><a href="#features">Features</a><a href="#preview">Preview</a><a href="#commands">Commands</a><a href="#faq">FAQ</a><a href="#about">About</a></nav>
+<a class="nav-action" href="#preview">Explore Oryn&nbsp; ↗</a>
+</div></header>
+<main id="home">
+<section class="hero"><div class="container hero-grid">
+<div>
+<div class="eyebrow">The multipurpose Discord bot</div>
+<h1>Better tools.<br><span>Better control.</span></h1>
+<p class="hero-copy">Oryn brings the essentials of running a Discord server into one considered toolkit — from moderation and security to support and everyday utilities.</p>
+<div class="actions"><a class="button primary" href="#features">Discover Oryn <span class="arrow">↗</span></a><a class="button" href="#commands">Explore commands <span class="arrow">↓</span></a></div>
+<div class="hero-foot">An independent project by Oryn Development</div>
+</div>
+<div class="art" aria-label="Minimal geometric Oryn emblem"><div class="art-frame"><div class="orbit"></div><div class="orbit two"></div><div class="core"><span>O</span></div></div><div class="art-caption">Precision in every detail</div></div>
+</div></section>
+<div class="strip"><div class="container strip-inner"><span class="strip-label">One focused toolkit</span><div class="strip-items"><span>Moderation</span><span>Protection</span><span>Automation</span><span>Support</span><span>Utilities</span></div></div></div>
+<section class="preview-section" id="preview"><div class="container">
+<div class="preview-heading"><div><div class="overline">DESIGN PREVIEW</div><h2>A closer look at Oryn.</h2></div><p>A visual concept for the Oryn experience. This is not a live control panel or real-time server data.</p></div>
+<div class="console"><div class="console-top"><div class="dots"><i></i><i></i><i></i></div><span class="console-label">ORYN / CONTROL CONCEPT</span><span class="console-label">UI PREVIEW</span></div>
+<div class="console-body"><aside class="console-side"><small>WORKSPACE</small><div class="console-link active">◇ &nbsp; Overview</div><div class="console-link">◇ &nbsp; Moderation</div><div class="console-link">◇ &nbsp; Protection</div><div class="console-link">◇ &nbsp; Tickets</div><div class="console-link">◇ &nbsp; Automation</div></aside>
+<div class="console-main"><div class="console-title"><h3>Server overview</h3><span class="badge">CONCEPT UI</span></div><div class="console-grid"><div class="console-card"><small>MODERATION</small><strong>Stay in control</strong><p>Tools for staff teams</p></div><div class="console-card"><small>PROTECTION</small><strong>Built for care</strong><p>Security-focused workflows</p></div><div class="console-card"><small>SUPPORT</small><strong>Help, organized</strong><p>Clear member requests</p></div></div>
+<div class="console-log"><div><i></i><em>ORYN</em> / interface preview initialized</div><div><i></i>Design system: <em>charcoal · silver · violet</em></div><div><i></i>Connection: <em>demonstration only — no live data</em></div></div></div></div></div><p class="caption">Illustrative interface only · No live server statistics or account connection</p></div></section>
+<section class="content" id="features"><div class="container">
+<div class="section-top"><div><div class="overline">01 / Capabilities</div><h2>Made for the way<br>servers actually work.</h2></div><p>Less clutter. Clearer tools. A cohesive experience for the people who keep communities running. Explore the core areas Oryn is built around.</p></div>
+<div class="features">
+<article class="feature"><div class="feature-head"><span>SERVER MANAGEMENT</span><span class="feature-number">01</span></div><h3>Moderation</h3><p>Member-management tools to help staff respond to rule violations and keep conversations in order.</p></article>
+<article class="feature"><div class="feature-head"><span>PROTECTION</span><span class="feature-number">02</span></div><h3>Server security</h3><p>Security-oriented controls and response workflows designed to support safer server administration.</p></article>
+<article class="feature"><div class="feature-head"><span>EFFICIENCY</span><span class="feature-number">03</span></div><h3>Automation</h3><p>Streamline repeat tasks with practical tools and configurable server workflows.</p></article>
+<article class="feature"><div class="feature-head"><span>MEMBER EXPERIENCE</span><span class="feature-number">04</span></div><h3>Tickets & support</h3><p>Give members a clear way to ask for help and help staff keep requests organized.</p></article>
+<article class="feature"><div class="feature-head"><span>ENGAGEMENT</span><span class="feature-number">05</span></div><h3>Giveaways & community</h3><p>Run community activities and keep everyday engagement tools close at hand.</p></article>
+<article class="feature"><div class="feature-head"><span>EVERYDAY TOOLS</span><span class="feature-number">06</span></div><h3>Utilities</h3><p>Quick access to useful member and server information without unnecessary complexity.</p></article>
+</div></div></section>
+<section class="content command-section" id="commands"><div class="container command-layout">
+<div><div class="overline">02 / Command experience</div><h2>Simple to reach.<br>Easy to use.</h2><p class="intro">A glimpse of the command categories the site is designed to showcase. The actual command list should be aligned with the current bot build.</p></div>
+<div><div class="command-list">
+<div class="command"><code>/help</code><span>Browse available tools</span></div>
+<div class="command"><code>/serverinfo</code><span>View server details</span></div>
+<div class="command"><code>/ticket</code><span>Access support workflows</span></div>
+<div class="command"><code>/moderation</code><span>Member and moderation tools</span></div>
+<div class="command"><code>/giveaway</code><span>Giveaway management</span></div>
+<div class="command"><code>/userinfo</code><span>View member information</span></div>
+</div><p class="note">Illustrative examples only. Commands may vary depending on the features currently deployed in Oryn Bot.</p></div>
+</div></section>
+<section class="faq-section" id="faq"><div class="container faq-layout"><div><div class="overline">04 / QUICK ANSWERS</div><h2>Good to know.</h2><p class="faq-intro">Features and commands depend on the actual deployed bot build.</p></div><div class="faq-list">
+<details class="faq-item"><summary>What is Oryn Bot?</summary><p>Oryn is a multipurpose Discord bot project by Oryn Development, focused on server management, moderation, support, and everyday tools.</p></details>
+<details class="faq-item"><summary>Are the commands shown guaranteed to work?</summary><p>No. The command list is illustrative and should be checked against the current bot deployment.</p></details>
+<details class="faq-item"><summary>Is the preview connected to Discord?</summary><p>No. It is a visual concept only and does not show live server data or control a bot.</p></details>
+<details class="faq-item"><summary>Where can I follow development?</summary><p>Visit the Oryn Bot GitHub repository using the project link below.</p></details>
+</div></div></section>
+<section class="about" id="about"><div class="container"><div class="about-panel"><div><div class="overline">03 / Oryn Development</div><h2>A cleaner way to run your server.</h2><p>Oryn is being built as a multipurpose Discord bot with a focus on useful functionality, considered design, and a consistent experience for server teams.</p></div><a class="button primary" id="get-started" href="https://github.com/XxDEMONxX-lab/oryn-bot" target="_blank" rel="noopener noreferrer">View the project <span class="arrow">↗</span></a></div></div></section>
+</main>
+<a class="back-top" id="back-top" href="#home" aria-label="Back to top">↑</a><footer><div class="container footer-row"><span><span class="footer-brand">ORYN</span> &nbsp;·&nbsp; A project by Oryn Development</span><div class="footer-links"><a href="#home">Back to top ↑</a><a href="https://github.com/XxDEMONxX-lab/oryn-bot" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><span>© <span id="year">2026</span> Oryn Development</span></div></footer>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const targets=document.querySelectorAll('section.content,.strip,.about-panel,.feature,.command,.section-top,.command-layout,.preview-heading,.console,.faq-item');
+targets.forEach((el,i)=>{el.classList.add('reveal');el.style.transitionDelay=(i%4)*65+'ms'});
+if('IntersectionObserver' in window){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.1,rootMargin:'0px 0px -25px 0px'});targets.forEach(el=>io.observe(el))}else{targets.forEach(el=>el.classList.add('is-visible'))}
+const fill=document.getElementById('progress-fill'),topBtn=document.getElementById('back-top');
+function scrollUI(){const max=document.documentElement.scrollHeight-innerHeight;fill.style.width=(max?scrollY/max*100:0)+'%';topBtn.classList.toggle('visible',scrollY>500)}
+addEventListener('scroll',scrollUI,{passive:true});scrollUI();
+if(matchMedia('(pointer:fine)').matches)addEventListener('pointermove',e=>{document.documentElement.style.setProperty('--px',e.clientX+'px');document.documentElement.style.setProperty('--py',e.clientY+'px')},{passive:true});
+document.querySelectorAll('.faq-item').forEach(item=>item.addEventListener('toggle',()=>{if(item.open)document.querySelectorAll('.faq-item').forEach(other=>{if(other!==item)other.open=false})}));
+const motionTargets=document.querySelectorAll('section.content,.strip,.about-panel,.feature,.command,.section-top,.command-layout');
+motionTargets.forEach(el=>el.classList.add('reveal'));
+if('IntersectionObserver' in window){
+ const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}})},{threshold:.12,rootMargin:'0px 0px -35px 0px'});
+ motionTargets.forEach(el=>observer.observe(el));
+}else{motionTargets.forEach(el=>el.classList.add('is-visible'))}
+</script>
+</body>
+</html>
