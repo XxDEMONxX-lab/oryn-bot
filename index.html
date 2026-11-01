@@ -50,13 +50,38 @@ footer{border-top:1px solid #ffffff0d;padding:24px 0 30px;color:#73717b;font-siz
 .eyebrow:before{animation:pulse-dot 3s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 
+/* Extra polish: scroll progress, interactive spotlight, motion and responsive preview */
+:root{--px:50%;--py:20%}
+body{background-image:radial-gradient(550px circle at var(--px) var(--py),#9b84d00b,transparent 68%)}
+.progress{position:fixed;z-index:60;top:0;left:0;width:100%;height:2px;pointer-events:none}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#82709f,#e0d9ed,#a58bcf);box-shadow:0 0 12px #b9a4e855}
+@keyframes halo-float{from{transform:translate(0,0) scale(1)}to{transform:translate(-20px,14px) scale(1.06)}}
+@keyframes float-panel{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes signal-pulse{0%,100%{opacity:.45}50%{opacity:1}}
+.hero:after{animation:halo-float 16s ease-in-out infinite alternate}
+.feature{position:relative;overflow:hidden}.feature:before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(transparent,#b9a4e8,transparent);opacity:0;transition:opacity .3s}.feature:hover:before{opacity:1}
+.command code{transition:color .2s}.command:hover code{color:#d8c9f4}
+.button{position:relative;overflow:hidden}.button:after{content:"";position:absolute;top:-50%;left:0;width:35%;height:200%;background:linear-gradient(90deg,transparent,#ffffff35,transparent);transform:translateX(-150%) skewX(-18deg)}.button:hover:after{animation:sheen .8s ease}
+.preview-section{padding:78px 0 90px;border-bottom:1px solid #ffffff0c;overflow:hidden}
+.preview-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:26px}.preview-heading h2{font-size:clamp(30px,4vw,44px);line-height:1.08;letter-spacing:-.06em;margin:12px 0 0}.preview-heading p{color:var(--muted);font-size:12px;max-width:330px;margin:0}
+.console{border:1px solid #34313b;background:#0c0c0f;box-shadow:0 30px 100px #0006;overflow:hidden}
+.console-top{height:44px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#111115}.dots{display:flex;gap:6px}.dots i{width:6px;height:6px;border-radius:50%;background:#777080}.console-label{font:10px ui-monospace,monospace;letter-spacing:.1em;color:#817d8a}
+.console-body{display:grid;grid-template-columns:175px 1fr;min-height:250px}.console-side{border-right:1px solid var(--line);padding:17px 12px;background:#0f0f12}.console-side small{display:block;font-size:9px;letter-spacing:.16em;color:#77727f;margin:0 0 12px 7px}
+.console-link{padding:8px 9px;color:#96919f;font-size:11px;margin:3px 0;border:1px solid transparent}.console-link.active{color:#e3dbea;border-color:#4c425b;background:#1a1720}.console-main{padding:21px;min-width:0}.console-title{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:15px}.console-title h3{font-size:16px;font-weight:560;margin:0}.badge{font-size:9px;letter-spacing:.1em;color:#b9a4e8;border:1px solid #5b4d70;padding:5px 8px}
+.console-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:17px}.console-card{border:1px solid #29272f;padding:13px;background:linear-gradient(145deg,#141318,#0e0e11);animation:float-panel 7s ease-in-out infinite}.console-card:nth-child(2){animation-delay:-2s}.console-card:nth-child(3){animation-delay:-4s}.console-card small{display:block;font-size:9px;color:#85808d;letter-spacing:.1em}.console-card strong{display:block;font-size:14px;font-weight:560;margin-top:8px}.console-card p{font-size:10px;color:#8e849f;margin:4px 0 0}
+.console-log{margin-top:13px;padding:11px 13px;border:1px solid #29272f;font:10px/1.9 ui-monospace,monospace;color:#8f8998}.console-log i{display:inline-block;width:5px;height:5px;background:#b9a4e8;border-radius:50%;margin-right:8px;animation:signal-pulse 2s infinite}.console-log em{font-style:normal;color:#c9bedc}.caption{margin:11px 0 0;color:#6f6b76;font-size:10px}
+.faq-section{padding:80px 0;border-bottom:1px solid #ffffff0b}.faq-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:55px}.faq-layout h2{font-size:clamp(32px,4.2vw,48px);line-height:1.08;letter-spacing:-.06em;margin:13px 0}.faq-intro{color:var(--muted);font-size:13px}.faq-list{border-top:1px solid var(--line)}.faq-item{border-bottom:1px solid var(--line)}.faq-item summary{cursor:pointer;list-style:none;padding:17px 28px 17px 0;position:relative;font-size:13px;color:#d6d2dc}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:after{content:"+";position:absolute;right:3px;top:15px;color:#b9a4e8;font-size:18px;transition:transform .25s}.faq-item[open] summary:after{transform:rotate(45deg)}.faq-item p{margin:0;padding:0 20px 17px 0;color:#96929e;font-size:12px;line-height:1.8}
+.back-top{position:fixed;right:18px;bottom:18px;width:38px;height:38px;display:grid;place-items:center;background:#17151c;border:1px solid #494052;color:#e2d9ef;z-index:25;opacity:0;transform:translateY(8px);pointer-events:none;transition:all .25s}.back-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+@media(max-width:760px){.preview-section,.faq-section{padding:58px 0}.preview-heading{display:block}.preview-heading p{margin-top:13px}.console-body{grid-template-columns:1fr}.console-side{display:flex;gap:4px;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px}.console-side small{display:none}.console-link{white-space:nowrap;margin:0;padding:7px}.console-main{padding:14px}.console-grid{gap:6px}.console-card{padding:9px}.console-card strong{font-size:12px}.faq-layout{grid-template-columns:1fr;gap:22px}}
+@media(max-width:420px){.console-grid{grid-template-columns:1fr}.console-card{display:flex;align-items:center;justify-content:space-between;gap:10px}.console-card strong{margin:0}.console-card p{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
 </style>
 </head>
-<body>
+<body><div class="progress"><span id="progress-fill"></span></div>
 <header><div class="container nav">
 <a class="identity" href="#home" aria-label="Oryn Bot home"><span class="symbol">O</span><span>ORYN <small>DEVELOPMENT</small></span></a>
-<nav class="navlinks" aria-label="Main navigation"><a href="#features">Features</a><a href="#commands">Commands</a><a href="#about">About</a></nav>
-<a class="nav-action" href="#get-started">Explore Oryn&nbsp; ↗</a>
+<nav class="navlinks" aria-label="Main navigation"><a href="#features">Features</a><a href="#preview">Preview</a><a href="#commands">Commands</a><a href="#faq">FAQ</a><a href="#about">About</a></nav>
+<a class="nav-action" href="#preview">Explore Oryn&nbsp; ↗</a>
 </div></header>
 <main id="home">
 <section class="hero"><div class="container hero-grid">
@@ -70,6 +95,12 @@ footer{border-top:1px solid #ffffff0d;padding:24px 0 30px;color:#73717b;font-siz
 <div class="art" aria-label="Minimal geometric Oryn emblem"><div class="art-frame"><div class="orbit"></div><div class="orbit two"></div><div class="core"><span>O</span></div></div><div class="art-caption">Precision in every detail</div></div>
 </div></section>
 <div class="strip"><div class="container strip-inner"><span class="strip-label">One focused toolkit</span><div class="strip-items"><span>Moderation</span><span>Protection</span><span>Automation</span><span>Support</span><span>Utilities</span></div></div></div>
+<section class="preview-section" id="preview"><div class="container">
+<div class="preview-heading"><div><div class="overline">DESIGN PREVIEW</div><h2>A closer look at Oryn.</h2></div><p>A visual concept for the Oryn experience. This is not a live control panel or real-time server data.</p></div>
+<div class="console"><div class="console-top"><div class="dots"><i></i><i></i><i></i></div><span class="console-label">ORYN / CONTROL CONCEPT</span><span class="console-label">UI PREVIEW</span></div>
+<div class="console-body"><aside class="console-side"><small>WORKSPACE</small><div class="console-link active">◇ &nbsp; Overview</div><div class="console-link">◇ &nbsp; Moderation</div><div class="console-link">◇ &nbsp; Protection</div><div class="console-link">◇ &nbsp; Tickets</div><div class="console-link">◇ &nbsp; Automation</div></aside>
+<div class="console-main"><div class="console-title"><h3>Server overview</h3><span class="badge">CONCEPT UI</span></div><div class="console-grid"><div class="console-card"><small>MODERATION</small><strong>Stay in control</strong><p>Tools for staff teams</p></div><div class="console-card"><small>PROTECTION</small><strong>Built for care</strong><p>Security-focused workflows</p></div><div class="console-card"><small>SUPPORT</small><strong>Help, organized</strong><p>Clear member requests</p></div></div>
+<div class="console-log"><div><i></i><em>ORYN</em> / interface preview initialized</div><div><i></i>Design system: <em>charcoal · silver · violet</em></div><div><i></i>Connection: <em>demonstration only — no live data</em></div></div></div></div></div><p class="caption">Illustrative interface only · No live server statistics or account connection</p></div></section>
 <section class="content" id="features"><div class="container">
 <div class="section-top"><div><div class="overline">01 / Capabilities</div><h2>Made for the way<br>servers actually work.</h2></div><p>Less clutter. Clearer tools. A cohesive experience for the people who keep communities running. Explore the core areas Oryn is built around.</p></div>
 <div class="features">
@@ -91,11 +122,25 @@ footer{border-top:1px solid #ffffff0d;padding:24px 0 30px;color:#73717b;font-siz
 <div class="command"><code>/userinfo</code><span>View member information</span></div>
 </div><p class="note">Illustrative examples only. Commands may vary depending on the features currently deployed in Oryn Bot.</p></div>
 </div></section>
+<section class="faq-section" id="faq"><div class="container faq-layout"><div><div class="overline">04 / QUICK ANSWERS</div><h2>Good to know.</h2><p class="faq-intro">Features and commands depend on the actual deployed bot build.</p></div><div class="faq-list">
+<details class="faq-item"><summary>What is Oryn Bot?</summary><p>Oryn is a multipurpose Discord bot project by Oryn Development, focused on server management, moderation, support, and everyday tools.</p></details>
+<details class="faq-item"><summary>Are the commands shown guaranteed to work?</summary><p>No. The command list is illustrative and should be checked against the current bot deployment.</p></details>
+<details class="faq-item"><summary>Is the preview connected to Discord?</summary><p>No. It is a visual concept only and does not show live server data or control a bot.</p></details>
+<details class="faq-item"><summary>Where can I follow development?</summary><p>Visit the Oryn Bot GitHub repository using the project link below.</p></details>
+</div></div></section>
 <section class="about" id="about"><div class="container"><div class="about-panel"><div><div class="overline">03 / Oryn Development</div><h2>A cleaner way to run your server.</h2><p>Oryn is being built as a multipurpose Discord bot with a focus on useful functionality, considered design, and a consistent experience for server teams.</p></div><a class="button primary" id="get-started" href="https://github.com/XxDEMONxX-lab/oryn-bot" target="_blank" rel="noopener noreferrer">View the project <span class="arrow">↗</span></a></div></div></section>
 </main>
-<footer><div class="container footer-row"><span><span class="footer-brand">ORYN</span> &nbsp;·&nbsp; A project by Oryn Development</span><div class="footer-links"><a href="#home">Back to top ↑</a><a href="https://github.com/XxDEMONxX-lab/oryn-bot" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><span>© <span id="year">2026</span> Oryn Development</span></div></footer>
+<a class="back-top" id="back-top" href="#home" aria-label="Back to top">↑</a><footer><div class="container footer-row"><span><span class="footer-brand">ORYN</span> &nbsp;·&nbsp; A project by Oryn Development</span><div class="footer-links"><a href="#home">Back to top ↑</a><a href="https://github.com/XxDEMONxX-lab/oryn-bot" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><span>© <span id="year">2026</span> Oryn Development</span></div></footer>
 <script>
 document.getElementById('year').textContent=new Date().getFullYear();
+const targets=document.querySelectorAll('section.content,.strip,.about-panel,.feature,.command,.section-top,.command-layout,.preview-heading,.console,.faq-item');
+targets.forEach((el,i)=>{el.classList.add('reveal');el.style.transitionDelay=(i%4)*65+'ms'});
+if('IntersectionObserver' in window){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.1,rootMargin:'0px 0px -25px 0px'});targets.forEach(el=>io.observe(el))}else{targets.forEach(el=>el.classList.add('is-visible'))}
+const fill=document.getElementById('progress-fill'),topBtn=document.getElementById('back-top');
+function scrollUI(){const max=document.documentElement.scrollHeight-innerHeight;fill.style.width=(max?scrollY/max*100:0)+'%';topBtn.classList.toggle('visible',scrollY>500)}
+addEventListener('scroll',scrollUI,{passive:true});scrollUI();
+if(matchMedia('(pointer:fine)').matches)addEventListener('pointermove',e=>{document.documentElement.style.setProperty('--px',e.clientX+'px');document.documentElement.style.setProperty('--py',e.clientY+'px')},{passive:true});
+document.querySelectorAll('.faq-item').forEach(item=>item.addEventListener('toggle',()=>{if(item.open)document.querySelectorAll('.faq-item').forEach(other=>{if(other!==item)other.open=false})}));
 const motionTargets=document.querySelectorAll('section.content,.strip,.about-panel,.feature,.command,.section-top,.command-layout');
 motionTargets.forEach(el=>el.classList.add('reveal'));
 if('IntersectionObserver' in window){
