@@ -142,6 +142,17 @@ app.put("/api/guilds/:id/config", requireOAuth, async (req, res) => {
     res.json({ ok: true, config: configs[guild.id] });
   } catch (error) { console.error("[config]", error.message); res.status(500).json({ error: "Could not save settings. Check persistent disk and server logs." }); }
 });
+app.get("/internal/guilds/:id/config", (req, res) => {
+  const key = process.env.DASHBOARD_API_KEY;
+  if (!key || !req.get("authorization") || req.get("authorization") !== "Bearer " + key) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  const id = String(req.params.id);
+  if (!/^\\d{17,20}$/.test(id)) return res.status(400).json({ error: "Invalid guild ID" });
+  res.set("Cache-Control", "no-store");
+  res.json({ guildId: id, config: configs[id] || { welcomeEnabled: false, moderationAlerts: true, ticketSystem: false, prefix: "OB!" } });
+});
+
 app.get("*", (req, res, next) => {
   if (req.path.startsWith("/api/") || req.path.startsWith("/auth/")) return res.status(404).json({ error: "Not found" });
   res.sendFile(path.join(__dirname, "public", "index.html"), error => { if (error) next(error); });
