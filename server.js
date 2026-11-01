@@ -55,14 +55,17 @@ async function discordFetch(url, options = {}) {
   return data;
 }
 async function getManageableGuilds(req) {
-  const [userGuilds, botGuilds] = await Promise.all([
-    discordFetch(DISCORD_API + "/users/@me/guilds", { headers: { Authorization: "Bearer " + req.session.accessToken } }),
-    discordFetch(DISCORD_API + "/users/@me/guilds", { headers: { Authorization: "Bot " + BOT_TOKEN } })
-  ]);
-  const botIds = new Set(botGuilds.map(g => g.id));
-  return userGuilds.filter(g => permissionsAllowManage(g.permissions) && botIds.has(g.id))
-    .map(g => ({ id: g.id, name: g.name, icon: g.icon, approximate: false }))
-    .sort((a,b) => a.name.localeCompare(b.name));
+  const userGuilds = await discordFetch(DISCORD_API + "/users/@me/guilds", {
+    headers: { Authorization: "Bearer " + req.session.accessToken }
+  });
+  const manageable = userGuilds.filter(g => permissionsAllowManage(g.permissions));
+  const checks = await Promise.all(manageable.map(async g => {
+    try {
+      await discordFetch(DISCORD_API + "/guilds/" + g.id, { headers: { Authorization: "Bot " + BOT_TOKEN } });
+      return { id: g.id, name: g.name, icon: g.icon };
+    } catch { return null; }
+  }));
+  return checks.filter(Boolean).sort((a,b) => a.name.localeCompare(b.name));
 }
 app.disable("x-powered-by");
 app.set("trust proxy", 1);
