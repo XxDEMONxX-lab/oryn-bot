@@ -1,0 +1,26 @@
+# Oryn Bot — important environment variables
+# Copy these variable names into your Render Environment settings.
+# Do NOT put real secrets in this file or commit secret values.
+
+# Website / dashboard
+PORT=10000
+NODE_ENV=production
+APP_BASE_URL=https://YOUR-ACTUAL-RENDER-DOMAIN
+SESSION_SECRET=REPLACE_WITH_A_LONG_RANDOM_PRIVATE_SECRET
+DATA_DIR=/var/data
+
+# Discord OAuth2 (Discord Developer Portal → OAuth2)
+DISCORD_CLIENT_ID=YOUR_DISCORD_APPLICATION_CLIENT_ID
+DISCORD_CLIENT_SECRET=YOUR_DISCORD_OAUTH_CLIENT_SECRET
+
+# Bot-to-Discord API access
+DISCORD_BOT_TOKEN=YOUR_DISCORD_BOT_TOKEN
+
+# Optional: secret used by your bot when calling the dashboard's internal config API
+DASHBOARD_API_KEY=REPLACE_WITH_A_DIFFERENT_LONG_RANDOM_SECRET
+
+# Discord OAuth2 redirect URL to register in the Developer Portal:
+# https://YOUR-ACTUAL-RENDER-DOMAIN/auth/discord/callback
+
+# Render persistent disk mount path should match DATA_DIR (for example /var/data).
+# Never commit actual token, client secret, session secret, or API key.
